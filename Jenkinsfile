@@ -26,7 +26,7 @@ pipeline {
 
         stage (‘Deploy’) {
 	steps {
-		sh "docker-compose -f docker-compose.yaml up -d --build"
+		sh "cd webserver && docker-compose -f docker-compose.yaml up -d --build"
 
         }
 	}
