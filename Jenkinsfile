@@ -20,13 +20,13 @@ pipeline {
     stage (‘Build’) {
 	steps {
 		sh "cd webserver && npm run build"
-		sh "sudo cp -R /home/centos/project/docker-compose.yml  /var/lib/jenkins/workspace/SSR/webserver && sudo cp -R /home/centos/project/Dockerfile  /var/lib/jenkins/workspace/SSR/webserver"
+		sh "sudo cp -R /home/centos/project/docker-compose.yml  /var/lib/jenkins/workspace/SSR/webserver/ && sudo cp -R /home/centos/project/Dockerfile  /var/lib/jenkins/workspace/SSR/webserver/"
 	}
 	}
 
         stage (‘Deploy’) {
 	steps {
-		sh "cd webserver && docker-compose -f docker-compose.yaml up -d --build"
+		sh "cd webserver && docker-compose -f docker-compose.yml up -d --build"
 
         }
 	}
