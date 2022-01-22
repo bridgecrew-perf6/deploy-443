@@ -34,4 +34,4 @@ pipeline {
 }
 
 
-sudo cp -R /home/centos/project/Dockerfile  /var/lib/jenkins/workspace/SSR/webserver
+
