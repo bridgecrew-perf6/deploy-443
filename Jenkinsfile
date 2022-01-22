@@ -19,7 +19,7 @@ pipeline {
     	}
     stage (‘Deploy’) {
 	steps {
-		sh "npm install react-scripts@3.4.1 -g --silent && cd webserver && npm run build"
+		sh "cd webserver && npm run build"
 	}
 	}
 }
