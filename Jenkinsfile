@@ -22,7 +22,7 @@ pipeline {
 		sh "cd webserver && npm run build"
 	}
 	}
-     stage (‘pakage dockerfile’) {
+     stage (‘pakage-dockerfile’) {
 	steps {
 		sh "cat > Dockerfile.prod <<EOF
                 FROM node:13.12.0-alpine as build
@@ -40,7 +40,7 @@ pipeline {
                 EOF"
 	}
 	}
-      stage (‘Package docker compose’) {
+      stage (‘Package-docker-compose’) {
 	steps {
 		sh "cat > docker-compose.yaml <<EOF
                 version: '3.7'
