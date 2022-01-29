@@ -26,12 +26,13 @@ pipeline {
 
         stage (‘Deploy’) {
 	steps {
-		sh "cd webserver && docker-compose -f docker-compose.yml up -d --build"
+		sh "cd webserver &&  
+		    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 963750697977.dkr.ecr.us-east-1.amazonaws.com  &&
+			docker build -t web-server:latest -f Dockerfile.prod .  &&
+			docker tag web-server:latest 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest  &&
+            docker push 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest"
 
         }
 	}
 }
 }
-
-
-
