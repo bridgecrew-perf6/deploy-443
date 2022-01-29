@@ -26,11 +26,10 @@ pipeline {
 
         stage (‘Deploy’) {
 	steps {
-		sh "cd webserver &&  
-		    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 963750697977.dkr.ecr.us-east-1.amazonaws.com  &&
-			docker build -t web-server:latest -f Dockerfile.prod .  &&
-			docker tag web-server:latest 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest  &&
-            docker push 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest"
+		sh  "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 963750697977.dkr.ecr.us-east-1.amazonaws.com"
+		sh	"docker build -t web-server:latest -f /var/lib/jenkins/workspace/SSR/webserver/Dockerfile.prod . " 
+		sh	"docker tag web-server:latest 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest"
+        sh  "docker push 963750697977.dkr.ecr.us-east-1.amazonaws.com/web-server:latest"
 
         }
 	}
